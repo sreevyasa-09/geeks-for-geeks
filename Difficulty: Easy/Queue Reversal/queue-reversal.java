@@ -1,18 +1,13 @@
 class Solution {
-    public Queue<Integer> reverseQueue(Queue<Integer> q) {
+    public void reverseQueue(Queue<Integer> q) {
         // code here
+        Stack<Integer> s = new Stack<>();
         int n = q.size();
-        if(q.isEmpty())
-            return q;
-            RQ(q);
-    
-            return q;
-    }
-    private void RQ(Queue<Integer> q){
-        if(q.isEmpty())
-            return;
-            int f = q.poll();
-            RQ(q);
-            q.add(f);
+        for(int i = 0; i < n; i++){
+            s.push(q.poll());
+        }
+        while(!s.isEmpty()){
+            q.add(s.pop());
+        }
     }
 }
