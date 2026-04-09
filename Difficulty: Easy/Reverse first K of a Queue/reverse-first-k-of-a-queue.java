@@ -1,20 +1,28 @@
+import java.util.*;
+
 class Solution {
     public Queue<Integer> reverseFirstK(Queue<Integer> q, int k) {
-        // code here
+        Stack<Integer> s1 = new Stack<>();
+        Queue<Integer> q1 = new LinkedList<>();
+        
         int n = q.size();
-        if(k > n || k <= 0)
+
+        if (q == null || q.isEmpty() || k <= 0 || k > q.size()) {
             return q;
-            RQ(q, k);
-            for(int i = 0; i < n - k; i++){
-                q.add(q.poll());
-            }
-            return q;
-    }
-    private void RQ(Queue<Integer> q, int k){
-        if(k == 0)
-            return;
-            int f = q.poll();
-            RQ(q, k-1);
-            q.add(f);
+        }
+        
+        for (int i = 0; i < k; i++) {
+            s1.push(q.poll());
+        }
+
+        while (!s1.isEmpty()) {
+            q1.add(s1.pop());
+        }
+
+        while (!q.isEmpty()) {
+            q1.add(q.poll());
+        }
+
+        return q1;
     }
 }
